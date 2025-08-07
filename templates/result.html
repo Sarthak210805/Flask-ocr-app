@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OCR Result</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            padding: 40px 10px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 35px 30px;
+            border-radius: 10px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        h2, h3 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .text-output {
+            background-color: #f1f3f5;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            white-space: pre-wrap;
+            font-size: 16px;
+            line-height: 1.6;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .image-preview {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 500px;
+            border-radius: 8px;
+            border: 2px solid #dee2e6;
+            margin-top: 15px;
+        }
+
+        a.back-btn {
+            display: inline-block;
+            margin-top: 35px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            background: #007bff;
+            padding: 12px 22px;
+            border-radius: 6px;
+            transition: background 0.3s;
+            text-align: center;
+        }
+
+        a.back-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📄 Extracted Text</h2>
+        <div class="text-output">{{ text }}</div>
+
+        <div class="image-preview">
+            <h3>🖼️ Uploaded Image</h3>
+            <img src="{{ image_url }}" alt="Uploaded Image">
+        </div>
+
+        <div style="text-align: center;">
+            <a class="back-btn" href="/">← Try Another Image</a>
+        </div>
+    </div>
+</body>
+</html>

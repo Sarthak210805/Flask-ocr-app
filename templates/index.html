@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OCR Text Extractor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: #f4f6f8;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: #333;
+        }
+        .upload-area {
+            margin-bottom: 20px;
+        }
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #007bff;
+            color: #fff;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        .custom-file-upload:hover {
+            background: #0056b3;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .filename {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+        .btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background: #218838;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .loading-container {
+            display: none;
+            margin-top: 20px;
+        }
+        .spinner {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #007bff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: auto;
+        }
+        .progress-bar {
+            margin-top: 10px;
+            height: 6px;
+            width: 100%;
+            background: #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: #007bff;
+            animation: loading 2.5s ease-in-out forwards;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OCR Text Extractor</h1>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form id="ocrForm" method="POST" enctype="multipart/form-data">
+            <div class="upload-area">
+                <label for="file-upload" class="custom-file-upload">
+                    Choose Image
+                </label>
+                <input id="file-upload" type="file" name="image" accept="image/*" required>
+                <div class="filename" id="filename">No file selected</div>
+            </div>
+            <button type="submit" class="btn">Extract Text</button>
+
+            <div class="loading-container" id="loading">
+                <div class="spinner"></div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-upload');
+        const fileNameDisplay = document.getElementById('filename');
+        const form = document.getElementById('ocrForm');
+        const loading = document.getElementById('loading');
+
+        fileInput.addEventListener('change', () => {
+            const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'No file selected';
+            fileNameDisplay.textContent = fileName;
+        });
+
+        form.addEventListener('submit', function () {
+            loading.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
