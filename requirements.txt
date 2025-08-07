@@ -1,3 +1,5 @@
 Flask
-requests
-python-dotenv
+gunicorn
+pytesseract
+Pillow
+opencv-python
