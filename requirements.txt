@@ -3,3 +3,4 @@ gunicorn
 pytesseract
 Pillow
 requests
+python-dotenv
